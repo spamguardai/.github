@@ -44,7 +44,7 @@ SpamGuard AI provides secure and privacy-preserving spam classification using fu
 - [piheaan](https://github.com/snucsl/piheaan): FHE library for homomorphic operations
 - Logistic Regression: Linear model for binary classification
 - React + TypeScript: Client-side application
-- Python (FastAPI or Flask): Server-side API
+- Python (FastAPI): Server-side server for prediction / Client-side server for encryption & decryption
 
 ---
 
