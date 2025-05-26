@@ -1,29 +1,68 @@
-# 🚫 SpamGuard AI
+# 📧 SpamGuard AI  
+**Advanced Spam Detection with Homomorphic Encryption Technology**
 
-**Advanced Spam Detection powered by Homomorphic Encryption.**
-
-SpamGuard AI leverages state-of-the-art **homomorphic encryption** to analyze user inputs and detect spam — all while preserving data privacy.  
-It combines machine learning with encrypted computation, ensuring that sensitive information remains secure throughout the detection process.
-
-## 🔐 **Key Features**
-- Privacy-preserving spam classification using encrypted vectors and weights
-- Seamless integration of preprocessing, vectorization, encryption, and prediction
-- Designed for secure environments where data confidentiality is critical
+SpamGuard AI provides secure and privacy-preserving spam classification using fully homomorphic encryption (FHE). It ensures that sensitive email contents and model parameters remain encrypted throughout the entire prediction process.
 
 ---
-## 🔐 Security Architecture
 
-SpamGuard AI is built with **privacy by design** in mind. It utilizes **Homomorphic Encryption** to ensure that sensitive user data is never exposed in plaintext—even during processing.
+## 🔐 Key Features
 
-- The **Secret Key** is stored **only on the client-side**.  
-  The server **never has access** to the secret key, ensuring complete data confidentiality.
-- All feature vectors and model weights are encrypted on the client-side using the secret key before transmission.
-- Encrypted data is serialized using **Base64 encoding** to allow safe transmission over standard HTTP channels.
-- Upon receipt, the server decodes the Base64 string and performs computations **directly on the encrypted data (Ciphertext)**.
-- The encrypted results are sent back to the client, where decryption and final interpretation are performed locally.
+- Privacy-preserving spam classification using encrypted vectors and weights  
+- Seamless integration of preprocessing, vectorization, encryption, and prediction  
+- Designed for secure environments where data confidentiality is critical  
+- Client-side secret key management with no server-side exposure  
+- Supports encrypted inference with logistic regression over FHE
 
-> ✅ This design ensures that at no point is the raw user input or prediction result exposed to the server.
 ---
+
+## 🔄 Flow: How SpamGuard AI Works
+
+1. **Client-side preprocessing**  
+   The user’s input email text is preprocessed and converted into a numerical feature vector.
+
+2. **Client-side encryption**  
+   The input vector and model parameters (weights and intercept) are encrypted using the [piheaan](https://github.com/snucsl/piheaan) library.  
+   ➤ The **secret key is kept solely on the client side**, and the server has no access to it.
+
+3. **Encrypted data transmission**  
+   The encrypted input vector and model parameters are Base64-encoded and transmitted to the server.
+
+4. **Server-side encrypted prediction**  
+   The server performs logistic regression prediction directly on the encrypted data using FHE.  
+   ➤ The server never accesses any plaintext data during this computation.
+
+5. **Encrypted result transmission**  
+   The encrypted prediction result (a score) is returned to the client in Base64-encoded form.
+
+6. **Client-side decryption & classification**  
+   The client decodes and decrypts the score using the secret key and classifies the result as **spam** or **not spam**.
+
+---
+
+## 📁 Technologies Used
+
+- [piheaan](https://github.com/snucsl/piheaan): FHE library for homomorphic operations
+- Logistic Regression: Linear model for binary classification
+- React + TypeScript: Client-side application
+- Python (FastAPI or Flask): Server-side API
+
+---
+
+## ⚠️ Security Note
+
+All computations on the server are done on encrypted data. The secret key **never leaves the client**, making this system suitable for environments where data privacy and zero-trust architectures are required.
+
+---
+
+## 📬 Example Use Case
+
+```txt
+1. User enters email content
+2. Client encrypts features + model
+3. Server computes prediction on encrypted data
+4. Client decrypts the result
+5. Displays: SPAM / NOT SPAM
+
 
 <img width="1262" alt="image" src="https://github.com/user-attachments/assets/353baa63-b0ce-4e36-940d-bbe7a53338c1" />
 
