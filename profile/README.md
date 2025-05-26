@@ -1,7 +1,7 @@
 # 📧 SpamGuard AI  
 **Advanced Spam Detection with Homomorphic Encryption Technology**
 
-SpamGuard AI provides secure and privacy-preserving spam classification using fully homomorphic encryption (FHE). It ensures that sensitive email contents and model parameters remain encrypted throughout the entire prediction process.
+SpamGuard AI provides secure and privacy-preserving spam classification using homomorphic encryption (HE). 
 
 ---
 
@@ -21,15 +21,15 @@ SpamGuard AI provides secure and privacy-preserving spam classification using fu
    The user’s input email text is preprocessed and converted into a numerical feature vector.
 
 2. **Client-side encryption**  
-   The input vector and model parameters (weights and intercept) are encrypted using the [piheaan](https://github.com/snucsl/piheaan) library.  
+   The input vector and model parameters (weights and intercept) are encrypted using the piheaan library.  
    ➤ The **secret key is kept solely on the client side**, and the server has no access to it.
 
 3. **Encrypted data transmission**  
-   The encrypted input vector and model parameters are Base64-encoded and transmitted to the server.
+   The encrypted input text(vector) and model parameters are Base64-encoded and transmitted to the server.
 
 4. **Server-side encrypted prediction**  
-   The server performs logistic regression prediction directly on the encrypted data using FHE.  
-   ➤ The server never accesses any plaintext data during this computation.
+   The server performs logistic regression prediction directly on the encrypted data.  
+   ➤ The server never accesses any plaintext data during this computation.(NO secret key)
 
 5. **Encrypted result transmission**  
    The encrypted prediction result (a score) is returned to the client in Base64-encoded form.
@@ -50,8 +50,8 @@ SpamGuard AI provides secure and privacy-preserving spam classification using fu
 
 ## 📁 Technologies Used
 
-- [piheaan](https://github.com/snucsl/piheaan): FHE library for homomorphic operations
-- Logistic Regression: Linear model for binary classification
+- piheaan: HE library for homomorphic operations
+- Logistic Regression: Machine learning model for binary classification
 - React + TypeScript: Client-side application
 - Python (FastAPI): Server-side server for prediction / Client-side server for encryption & decryption
 
