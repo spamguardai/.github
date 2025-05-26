@@ -5,7 +5,7 @@
 SpamGuard AI leverages state-of-the-art **homomorphic encryption** to analyze user inputs and detect spam — all while preserving data privacy.  
 It combines machine learning with encrypted computation, ensuring that sensitive information remains secure throughout the detection process.
 
-🔐 **Key Features**
+## 🔐 **Key Features**
 - Privacy-preserving spam classification using encrypted vectors and weights
 - Seamless integration of preprocessing, vectorization, encryption, and prediction
 - Designed for secure environments where data confidentiality is critical
