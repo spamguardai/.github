@@ -58,10 +58,11 @@ All computations on the server are done on encrypted data. The secret key **neve
 
 ```txt
 1. User enters email content
-2. Client encrypts features + model
+2. Client encrypts features + model parameters
 3. Server computes prediction on encrypted data
 4. Client decrypts the result
 5. Displays: SPAM / NOT SPAM
+
 
 
 <img width="1262" alt="image" src="https://github.com/user-attachments/assets/353baa63-b0ce-4e36-940d-bbe7a53338c1" />
