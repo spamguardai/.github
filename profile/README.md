@@ -37,6 +37,15 @@ SpamGuard AI provides secure and privacy-preserving spam classification using fu
 6. **Client-side decryption & classification**  
    The client decodes and decrypts the score using the secret key and classifies the result as **spam** or **not spam**.
 
+   > 💡 **Why not use the sigmoid function?**  
+   > This model performs binary classification, where the classification decision depends only on whether the probability is above or below 0.5.  
+   > Therefore, it's not necessary to explicitly compute the probability using the sigmoid function — we can directly use the raw linear output `z` (before applying sigmoid) to make the decision.  
+   >  
+   > In a homomorphic encryption (HE) setting, approximating the sigmoid function is computationally expensive and introduces loss of precision due to its non-linearity and division operations.  
+   >  
+   > ⚙️ Instead of applying an expensive sigmoid approximation, we simply interpret the encrypted result based on whether `z > 0` (not spam) or `z ≤ 0` (spam).
+
+
 ---
 
 ## 📁 Technologies Used
@@ -61,9 +70,7 @@ All computations on the server are done on encrypted data. The secret key **neve
 2. Client encrypts features + model parameters
 3. Server computes prediction on encrypted data
 4. Client decrypts the result
-5. Displays: SPAM / NOT SPAM
-
-
+5. Displays: SPAM / NOT SPAM ```
 
 <img width="1262" alt="image" src="https://github.com/user-attachments/assets/353baa63-b0ce-4e36-940d-bbe7a53338c1" />
 
